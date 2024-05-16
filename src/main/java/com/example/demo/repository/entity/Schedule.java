@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,10 +21,10 @@ public class Schedule {
     private int id;
 
     @Column(name="COURSE_ID",nullable=false)
-    private Long course_id;
+    private Integer course_id;
 
     @Column(name="GROUP_ID",nullable=false)
-    private Long group_id;
+    private Integer group_id;
 
     @Column(name="DESCRIPTION",nullable=false)
     private String description;
@@ -32,16 +33,16 @@ public class Schedule {
     private String location;
 
     @Column(name="TEACHER_ID",nullable=false)
-    private Long teacher_id;
+    private Integer teacher_id;
 
     @Column(name="START_DATE",nullable=false)
-    private LocalDateTime start_date;
+    private LocalDate start_date;
 
     @Column(name="END_DATE",nullable=false)
-    private LocalDateTime end_date;
+    private LocalDate end_date;
 
     @Column(name="REPEATS",nullable=false)
-    private Long  repeats;
+    private Integer  repeats;
 
     @Column(name="CREATED_AT",nullable=false)
     private LocalDateTime created_at;

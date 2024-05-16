@@ -39,9 +39,6 @@ public class Departments{
     @Column(name = "slug", nullable = false)
     private String slug;
 
-    @Column(name = "department_id", nullable = false)
-    private int departmentId;
-
     @Column(name = "status")
     private byte status;
 
