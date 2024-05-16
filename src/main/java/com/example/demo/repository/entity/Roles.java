@@ -16,7 +16,7 @@ public class Roles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID",nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -28,7 +28,7 @@ public class Roles {
     private String slug;
 
     @Column(name = "STATUS", nullable = false)
-    private Long status;
+    private Byte status;
 
     @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime created_at;

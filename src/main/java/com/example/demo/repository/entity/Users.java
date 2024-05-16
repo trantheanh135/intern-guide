@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -16,7 +17,7 @@ public class Users {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID",nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "EXTRA_CODE", nullable = false)
     private String extra_code;
@@ -40,10 +41,10 @@ public class Users {
     private String address;
 
     @Column(name = "BIRTHDAY", nullable = false)
-    private LocalDateTime birthday;
+    private LocalDate birthday;
 
     @Column(name = "GENDER", nullable = false)
-    private Long gender;
+    private Byte gender;
 
     @Column(name = "AVATAR", nullable = false)
     private String avatar;
@@ -52,7 +53,7 @@ public class Users {
     private String information;
 
     @Column(name = "STATUS", nullable = false)
-    private Long status;
+    private Byte status;
 
     @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime created_at;

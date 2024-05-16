@@ -17,7 +17,7 @@ public class Terms {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID",nullable = false)
-    private Long id;
+    private Integer id;
 
     @Column(name = "NAME",nullable = false)
     private String name;
@@ -26,10 +26,10 @@ public class Terms {
     private String slug;
 
     @Column(name = "YEAR",nullable = false)
-    private Long year;
+    private Integer year;
 
     @Column(name = "STATUS",nullable = false)
-    private Integer status;
+    private Byte status;
 
     @Column(name = "CREATED_AT", nullable = false)
     private LocalDateTime created_at;

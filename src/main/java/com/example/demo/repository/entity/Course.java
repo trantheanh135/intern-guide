@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "course")
+@Table(name = "courses")
 @Where(clause = "deleted_at = null")
 public class Course{
 
@@ -39,14 +39,11 @@ public class Course{
     @Column(name = "slug", nullable = false)
     private String slug;
 
-    @Column(name = "leader_id", nullable = false)
-    private int leaderId;
-
-    @Column(name = "date_beginning", nullable = false)
-    private LocalDateTime DateBeginning;
-
     @Column(name = "status")
     private byte status;
+
+    @Column(name = "department_id")
+    private Integer departmentId;
 
     @Column(name = "created_at" , nullable = true)
     private LocalDateTime createdAt;
