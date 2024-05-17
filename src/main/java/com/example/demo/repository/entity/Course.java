@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "courses")
-@Where(clause = "deleted_at = null")
+@Where(clause = "deleted_at is null")
 public class Course{
 
     @Id
@@ -53,4 +53,7 @@ public class Course{
 
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
+
+
+
 }
