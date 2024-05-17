@@ -24,15 +24,14 @@ public class CourseService {
         courseRepository.save(course);
     }
 
-    public void updateCourse(Integer id) {
-        CourseDto request = new CourseDto();
-        Course course = courseRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Course not found"));
-        course.setName(request.getName());
-        course.setSlug(request.getSlug());
-        course.setName(request.getName());
-        course.setStatus(request.getStatus());
-        course.setDepartmentId(request.getDepartmentId());
-        course.setUpdatedAt(request.getUpdatedAt());
+    public void updateCourse(CourseDto reqCourseDto) {
+        Course course = courseRepository.findById(reqCourseDto.getId()).orElseThrow(() -> new RuntimeException("Course not found"));
+        course.setName(reqCourseDto.getName());
+        course.setSlug(reqCourseDto.getSlug());
+        course.setName(reqCourseDto.getName());
+        course.setStatus(reqCourseDto.getStatus());
+        course.setDepartmentId(reqCourseDto.getDepartmentId());
+        course.setUpdatedAt(reqCourseDto.getUpdatedAt());
         courseRepository.save(course);
     }
 
