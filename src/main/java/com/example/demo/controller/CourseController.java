@@ -3,10 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.dto.CourseDto;
 import com.example.demo.service.CourseService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,33 +12,33 @@ import java.util.List;
 public class CourseController {
     private final CourseService courseService;
 
-    @PostMapping("/courses?create")
+    @PostMapping("/courses")
     public String saveCourse(@RequestBody CourseDto request) {
         courseService.saveCourse(request);
         return "Success";
     }
 
-    @PostMapping("/courses?update")
-    public String updateCourse(@RequestBody Integer id) {
+    @PutMapping("/courses")
+    public String updateCourse(@RequestBody CourseDto reqCourseDto) {
         //CourseDto request = new CourseDto();
         //id = request.getId();
-        courseService.updateCourse(id);
+        courseService.updateCourse(reqCourseDto);
         return "Success";
     }
 
-    @PostMapping("/courses?delete")
+    @DeleteMapping("/courses")
     public String deleteCourse(@RequestBody CourseDto request) {
         Integer id = request.getId();
         courseService.deleteCourse(id);
         return "Success";
     }
 
-    @GetMapping("/course")
-    public CourseDto getCourse(Integer id) {
+    @GetMapping("/courses/{id}")
+    public CourseDto getCourse(@PathVariable("id") Integer id) {
         return courseService.getCouse(id);
     }
 
-    @GetMapping("/course")
+    @GetMapping("/courses")
     public List<CourseDto> getCourses() {
         return courseService.getAllCourses();
     }
