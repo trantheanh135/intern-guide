@@ -17,4 +17,16 @@ public class CourseController {
         courseService.saveCourse(request);
         return "Success";
     }
+
+    @PostMapping("/courses")
+    public String updateCourse(@RequestBody CourseDto request) {
+        courseService.updateCourse(request);
+        return "Success";
+    }
+
+    @PostMapping("/courses")
+    public String deleteCourse(@RequestBody CourseDto request) {
+        courseService.deleteCourse(request);
+        return "Success";
+    }
 }

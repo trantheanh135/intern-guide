@@ -12,21 +12,33 @@ public class CourseService {
     private final CourseRepository courseRepository;
 
     public void saveCourse(CourseDto request) {
-        courseRepository.findById(request.getId()).orElse(null);
+        courseRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Course not found"));
         Course course = new Course();
         course.setSlug(request.getSlug());
         course.setName(request.getName());
         course.setStatus(request.getStatus());
         course.setDepartmentId(request.getDepartmentId());
+        course.setCreatedAt(request.getCreatedAt());
         courseRepository.save(course);
     }
 
     public void updateCourse(CourseDto request) {
-        Course course = courseRepository.findById(request.getId()).orElse(null);
+        courseRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Course not found"));
+        Course course = new Course();
         course.setName(request.getName());
         course.setSlug(request.getSlug());
         course.setName(request.getName());
         course.setStatus(request.getStatus());
+        course.setDepartmentId(request.getDepartmentId());
+        course.setUpdatedAt(request.getUpdatedAt());
+        courseRepository.save(course);
+    }
+
+    public void deleteCourse(CourseDto request) {
+        courseRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Course not found"));
+        Course course = new Course();
+        courseRepository.delete(course);
+        course.setDeletedAt(request.getDeletedAt());
         courseRepository.save(course);
     }
 }
