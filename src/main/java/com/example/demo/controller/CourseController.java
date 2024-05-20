@@ -20,8 +20,6 @@ public class CourseController {
 
     @PutMapping("/courses")
     public String updateCourse(@RequestBody CourseDto reqCourseDto) {
-        //CourseDto request = new CourseDto();
-        //id = request.getId();
         courseService.updateCourse(reqCourseDto);
         return "Success";
     }

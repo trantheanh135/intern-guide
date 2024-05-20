@@ -6,6 +6,7 @@ import com.example.demo.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.*;
 
 @Service
@@ -19,7 +20,7 @@ public class CourseService {
         course.setName(request.getName());
         course.setStatus(request.getStatus());
         course.setDepartmentId(request.getDepartmentId());
-        course.setCreatedAt(request.getCreatedAt());
+        course.setCreatedAt(LocalDateTime.now());
         courseRepository.save(course);
     }
 
@@ -30,15 +31,13 @@ public class CourseService {
         course.setName(reqCourseDto.getName());
         course.setStatus(reqCourseDto.getStatus());
         course.setDepartmentId(reqCourseDto.getDepartmentId());
-        course.setUpdatedAt(reqCourseDto.getUpdatedAt());
-        courseRepository.save(course);
+        course.setUpdatedAt(LocalDateTime.now());
+        Course course1 = courseRepository.save(course);
     }
 
     public void deleteCourse(Integer id) {
-        CourseDto request = new CourseDto();
-        courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
         Course course = courseRepository.findById(id).orElseThrow(() -> new RuntimeException("Course not found"));
-        course.setDeletedAt(request.getDeletedAt());
+        course.setDeletedAt(LocalDateTime.now());
         courseRepository.save(course);
     }
 

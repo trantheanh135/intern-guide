@@ -1,12 +1,12 @@
 package com.example.demo.service;
 
 import com.example.demo.dto.DepartmentDto;
-import com.example.demo.repository.CourseRepository;
 import com.example.demo.repository.DepartmentRepository;
 import com.example.demo.repository.entity.Departments;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -24,7 +24,7 @@ public class DepartmentService {
         Department.setDateBeginning(request.getDateBeginning());
         Department.setStatus(request.getStatus());
         Department.setLogo(request.getLogo());
-        Department.setCreatedAt(request.getCreatedAt());
+        Department.setCreatedAt(LocalDateTime.now());
         departmentRepository.save(Department);
     }
 
@@ -37,15 +37,14 @@ public class DepartmentService {
         Department.setDateBeginning(request.getDateBeginning());
         Department.setStatus(request.getStatus());
         Department.setLogo(request.getLogo());
-        Department.setUpdatedAt(request.getUpdatedAt());
+        Department.setUpdatedAt(LocalDateTime.now());
         departmentRepository.save(Department);
     }
 
     public void deleteDepartment(Integer id) {
-        DepartmentDto request = new DepartmentDto();
         departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found"));
         Departments Department = departmentRepository.findById(id).orElseThrow(() -> new RuntimeException("Department not found"));
-        Department.setDeletedAt(request.getDeletedAt());
+        Department.setDeletedAt(LocalDateTime.now());
         departmentRepository.save(Department);
     }
 
