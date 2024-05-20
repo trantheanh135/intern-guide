@@ -31,11 +31,11 @@ public class Roles {
     private Byte status;
 
     @Column(name = "CREATED_AT", nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "UPDATED_AT", nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name = "DELETED_AT", nullable = false)
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 }

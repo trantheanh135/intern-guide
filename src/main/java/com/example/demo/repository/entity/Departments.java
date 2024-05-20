@@ -39,8 +39,17 @@ public class Departments{
     @Column(name = "slug", nullable = false)
     private String slug;
 
+    @Column(name = "leader_id", nullable = false)
+    private Integer leaderId;
+
+    @Column(name = "date_beginning", nullable = false)
+    private LocalDate DateBeginning;
+
     @Column(name = "status")
     private byte status;
+
+    @Column(name = "logo")
+    private String logo;
 
     @Column(name = "created_at" , nullable = true)
     private LocalDateTime createdAt;

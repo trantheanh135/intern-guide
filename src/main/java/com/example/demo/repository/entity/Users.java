@@ -20,16 +20,16 @@ public class Users {
     private Integer id;
 
     @Column(name = "EXTRA_CODE", nullable = false)
-    private String extra_code;
+    private String extraCode;
 
     @Column(name = "FIRST_NAME", nullable = false)
-    private String first_name;
+    private String firstName;
 
     @Column(name = "LAST_NAME", nullable = false)
-    private String last_name;
+    private String lastName;
 
     @Column(name = "FULL_NAME", nullable = false)
-    private String full_name;
+    private String fullName;
 
     @Column(name = "EMAIL", nullable = false)
     private String email;
@@ -56,11 +56,11 @@ public class Users {
     private Byte status;
 
     @Column(name = "CREATED_AT", nullable = false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name = "UPDATED_AT", nullable = false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name = "DELETED_AT", nullable = false)
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 }
