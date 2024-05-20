@@ -2,9 +2,8 @@ package com.example.demo.service;
 
 import com.example.demo.dto.CourseDto;
 import com.example.demo.repository.entity.Course;
-import com.example.demo.repository.entity.CourseRepository;
+import com.example.demo.repository.CourseRepository;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.Length;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -45,7 +44,7 @@ public class CourseService {
 
     public CourseDto getCouse(Integer id) {
         CourseDto request = new CourseDto();
-        Course course = courseRepository.getByCourseId(id).orElseThrow(() -> new RuntimeException("Course not found"));;
+        Course course = courseRepository.getByCourseId(id).orElseThrow(() -> new RuntimeException("Course not found"));
         request.setName(course.getName());
         request.setSlug(course.getSlug());
         request.setDepartmentId(course.getDepartmentId());
@@ -53,7 +52,7 @@ public class CourseService {
         return request;
     }
     public List<CourseDto>  getAllCourses() {
-        List<CourseDto> requests = new ArrayList<CourseDto>();
+        List<CourseDto> requests = new ArrayList<>();
         List<Course> courses = courseRepository.findAll();
         for(Course course : courses) {
             CourseDto newCourseDto = new CourseDto();

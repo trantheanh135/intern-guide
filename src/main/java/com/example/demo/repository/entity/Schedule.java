@@ -21,10 +21,10 @@ public class Schedule {
     private int id;
 
     @Column(name="COURSE_ID",nullable=false)
-    private Integer course_id;
+    private Integer courseId;
 
     @Column(name="GROUP_ID",nullable=false)
-    private Integer group_id;
+    private Integer groupId;
 
     @Column(name="DESCRIPTION",nullable=false)
     private String description;
@@ -33,23 +33,23 @@ public class Schedule {
     private String location;
 
     @Column(name="TEACHER_ID",nullable=false)
-    private Integer teacher_id;
+    private Integer teacherId;
 
     @Column(name="START_DATE",nullable=false)
-    private LocalDate start_date;
+    private LocalDate startDate;
 
     @Column(name="END_DATE",nullable=false)
-    private LocalDate end_date;
+    private LocalDate endDate;
 
     @Column(name="REPEATS",nullable=false)
     private Integer  repeats;
 
     @Column(name="CREATED_AT",nullable=false)
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
     @Column(name="UPDATED_AT",nullable=false)
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
 
     @Column(name="DELETED_AT",nullable=false)
-    private LocalDateTime deleted_at;
+    private LocalDateTime deletedAt;
 }

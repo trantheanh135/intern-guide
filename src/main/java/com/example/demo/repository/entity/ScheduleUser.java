@@ -20,14 +20,14 @@ public class ScheduleUser {
     private int id;
 
     @Column(name = "SCHEDULE_ID",nullable = false)
-    private int schedule_id;
+    private int scheduleId;
 
     @Column(name = "DATE",nullable = false)
     private LocalDate date;
 
     @Column(name = "START_TIME",nullable = false)
-    private LocalTime start_time;
+    private LocalTime startTime;
 
     @Column(name = "END_TIME",nullable = false)
-    private LocalTime end_time;
+    private LocalTime endTime;
 }
