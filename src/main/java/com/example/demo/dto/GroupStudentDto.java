@@ -1,5 +1,8 @@
 package com.example.demo.dto;
 
+import com.example.demo.repository.entity.AccountEntity;
+import com.example.demo.repository.entity.CourseEntity;
+import com.example.demo.repository.entity.GroupEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,11 +11,11 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class GroupStudent {
+public class GroupStudentDto {
     private Integer id;
-    private Integer groupId;
-    private Integer courseId;
-    private Integer teacherId;
+    private GroupEntity groupEntity;
+    private CourseEntity courseEntity;
+    private AccountEntity teacher;
     private byte absent;
     private byte present;
     private LocalDate learningDate;

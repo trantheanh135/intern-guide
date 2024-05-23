@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import com.example.demo.repository.entity.Gender;
+import com.example.demo.repository.entity.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,21 +10,20 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class UserDto {
+public class UserCreationReq {
+    // info to create users
     private int id;
     private String extraCode;
     private String firstName;
     private String lastName;
     private String fullName;
     private String email;
-    private byte status;
+    private UserStatus status;
     private String phone;
     private String address;
     private LocalDate birthday;
-    private byte gender;
+    private Gender gender;
     private String avatar;
     private String information;
     private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
-    private LocalDateTime deletedAt;
 }

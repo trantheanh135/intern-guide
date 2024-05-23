@@ -12,22 +12,23 @@ import java.time.LocalTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="SCHEDULE_USER")
-public class ScheduleUser {
+@Table(name="schedule_user")
+public class ScheduleUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID",nullable = false)
+    @Column(name = "id",nullable = false)
     private int id;
 
-    @Column(name = "SCHEDULE_ID",nullable = false)
-    private int scheduleId;
+    @ManyToOne
+    @JoinColumn(name = "schedule_id",nullable = false)
+    private Schedule schedule;
 
-    @Column(name = "DATE",nullable = false)
+    @Column(name = "date",nullable = false)
     private LocalDate date;
 
-    @Column(name = "START_TIME",nullable = false)
+    @Column(name = "start_time",nullable = false)
     private LocalTime startTime;
 
-    @Column(name = "END_TIME",nullable = false)
+    @Column(name = "end_time",nullable = false)
     private LocalTime endTime;
 }

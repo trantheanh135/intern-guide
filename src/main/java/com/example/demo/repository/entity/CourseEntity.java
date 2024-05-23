@@ -1,12 +1,7 @@
 package com.example.demo.repository.entity;
 
 //import com.prasac.mbs.common.entity.Audit;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -26,12 +21,12 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "courses")
 @Where(clause = "deleted_at is null")
-public class Course{
+public class CourseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -42,8 +37,9 @@ public class Course{
     @Column(name = "status")
     private byte status;
 
-    @Column(name = "department_id")
-    private Integer departmentId;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private DepartmentEntity department;
 
     @Column(name = "created_at" , nullable = true)
     private LocalDateTime createdAt;
@@ -54,6 +50,9 @@ public class Course{
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
 
+    @OneToMany(mappedBy = "course")
+    private List<GroupStudentEntity> groupStudentEntities;
 
-
+    @OneToMany(mappedBy = "course")
+    private List<Schedule> courseSchedules;
 }

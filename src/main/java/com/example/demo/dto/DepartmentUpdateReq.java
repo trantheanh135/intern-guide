@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class DepartmentDto{
+public class DepartmentUpdateReq {
     private Long id;
     private String name;
     private String slug;
     private AccountEntity leader;
+    private Long LeaderId;
     private LocalDate dateBeginning;
     private byte status;
     private String logo;
+    private LocalDateTime updatedAt;
 }
