@@ -1,12 +1,7 @@
 package com.example.demo.repository.entity;
 
 //import com.prasac.mbs.common.entity.Audit;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,8 +10,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Builder(toBuilder = true)
 @AllArgsConstructor
@@ -25,36 +20,40 @@ import java.time.LocalDateTime;
 @Setter
 @Entity
 @Table(name = "groups")
-@Where(clause = "deleted_at = null")
-public class Groups {
+@Where(clause = "deleted_at is null")
+public class GroupEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
+    @Column(name = "id")
     private int id;
 
-    @Column(name = "department_id", nullable = false)
-    private int departmentId;
+    @ManyToOne
+    @JoinColumn(name = "department_id")
+    private DepartmentEntity department;
 
-    @Column(name = "term_id", nullable = false)
-    private int termId;
+    @ManyToOne
+    @JoinColumn(name = "term_id")
+    private TermEntity term;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "slug", nullable = false)
+    @Column(name = "slug")
     private String slug;
 
-    @Column(name = "student_numbers" , nullable = false)
-    private int TeacherId;
+    @Column(name = "student_numbers" )
+    private int TeacherNumber;
 
-    @Column(name = "teacher_id" , nullable = false)
-    private int teacherId;
+    @ManyToOne
+    @JoinColumn(name = "teacher_id" )
+    private AccountEntity teacher;
 
-    @Column(name = "captain_id" , nullable = false)
-    private int captainId;
+    @ManyToOne
+    @JoinColumn(name = "captain_id" )
+    private AccountEntity captain;
 
-    @Column(name = "status" , nullable = false)
+    @Column(name = "status" )
     private byte status;
 
     @Column(name = "created_at" , nullable = true)
@@ -65,4 +64,10 @@ public class Groups {
 
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "group")
+    private List<GroupStudentEntity> groupStudentList;
+
+    @OneToMany(mappedBy = "group")
+    private List<Schedule> groupScheduleList;
 }

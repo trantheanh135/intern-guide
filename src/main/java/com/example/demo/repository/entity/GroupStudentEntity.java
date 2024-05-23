@@ -1,12 +1,7 @@
 package com.example.demo.repository.entity;
 
 //import com.prasac.mbs.common.entity.Audit;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -15,7 +10,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.Where;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Builder(toBuilder = true)
@@ -24,32 +18,32 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "departments")
-@Where(clause = "deleted_at = null")
-public class Departments{
+@Table(name = "group_student")
+@Where(clause = "deleted_at is null")
+public class GroupStudentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
     private int id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "group_id", nullable = false)
+    private GroupEntity group;
 
-    @Column(name = "slug", nullable = false)
-    private String slug;
+    @ManyToOne
+    @JoinColumn(name = "student_id", nullable = false)
+    private AccountEntity student;
 
-    @Column(name = "leader_id", nullable = false)
-    private Integer leaderId;
+    @ManyToOne
+    @JoinColumn(name = "course_id", nullable = false)
+    private CourseEntity course;
 
-    @Column(name = "date_beginning", nullable = false)
-    private LocalDate DateBeginning;
+    @Column(name = "absent" , nullable = true)
+    private byte absent;
 
-    @Column(name = "status")
-    private byte status;
-
-    @Column(name = "logo")
-    private String logo;
+    @Column(name = "present" , nullable = true)
+    private byte present;
 
     @Column(name = "created_at" , nullable = true)
     private LocalDateTime createdAt;

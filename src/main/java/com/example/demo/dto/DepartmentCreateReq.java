@@ -9,12 +9,14 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class DepartmentDto{
+public class DepartmentCreateReq {
     private Long id;
     private String name;
     private String slug;
     private AccountEntity leader;
+    private Long leaderId;
     private LocalDate dateBeginning;
     private byte status;
     private String logo;
+    private LocalDateTime createdAt;
 }

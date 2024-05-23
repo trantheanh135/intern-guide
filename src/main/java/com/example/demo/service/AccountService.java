@@ -1,64 +1,57 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.AccountDto;
-import com.example.demo.dto.AccountUserDto;
+import com.example.demo.dto.AccountCreateReq;
+import com.example.demo.dto.AccountUpdateReq;
 import com.example.demo.repository.AccountRepository;
+import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.repository.entity.Accounts;
+import com.example.demo.repository.entity.AccountEntity;
+import com.example.demo.repository.entity.RoleEntity;
+import com.example.demo.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.net.Inet4Address;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
 public class AccountService {
     private final AccountRepository accountRepository;
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
 
-    public void saveAccount(AccountUserDto request){
-        Accounts accounts = new Accounts();
-        accounts.setUserName(request.getUserName());
-        accounts.setRoleId(request.getRoleId());
-        accounts.setUserId(request.getUserId());
-        accounts.setPassword(request.getPassword());
-        accounts.setStatus(request.getStatus());
-        accounts.setIpClient(request.getIpClient());
-        accounts.setCreatedAt(LocalDateTime.now());
-        accountRepository.save(accounts);
+    @Transactional
+    public void saveAccount(AccountCreateReq request){
+        UserEntity userEntity = userRepository.getByUserId(request.getUserId()).orElseThrow(() -> new RuntimeException("user not found"));
+        RoleEntity roleEntity = roleRepository.findById(request.getRoleId())
+                .orElseThrow(() -> new RuntimeException("role not found"));
+
+        AccountEntity accountEntity = new AccountEntity();
+        accountEntity.setUser(userEntity);
+        accountEntity.setUserName(request.getUserName());
+        accountEntity.setRole(roleEntity);
+        accountEntity.setPassword(request.getPassword());
+        accountEntity.setCreatedAt(LocalDateTime.now());
+        accountRepository.save(accountEntity);
     }
 
-    public void updateAccount(AccountDto request){
-        Accounts accounts = accountRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("Account not found"));
-        accounts.setRoleId(request.getRoleId());
-        accounts.setUserName(request.getUserName());
-        accounts.setUserId(request.getUserId());
-        accounts.setPassword(request.getPassword());
-        accounts.setStatus(request.getStatus());
-        accounts.setIpClient(request.getIpClient());
-        accounts.setUpdatedAt(LocalDateTime.now());
-        accountRepository.save(accounts);
+    public void updateAccount(AccountUpdateReq request , Long id) {
+        AccountEntity accountEntity = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("account not found"));
+        RoleEntity roleEntity = roleRepository.findById(request.getRoleId()).orElseThrow(() -> new RuntimeException("role not found"));
+        UserEntity userEntity = userRepository.findById(request.getUserId()).orElseThrow(() -> new RuntimeException("user not found"));
+
+        accountEntity.setUser(userEntity);
+        accountEntity.setUserName(request.getUserName());
+        accountEntity.setRole(roleEntity);
+        accountEntity.setPassword(request.getPassword());
+        accountEntity.setUpdatedAt(LocalDateTime.now());
+        accountRepository.save(accountEntity);
     }
 
-    public void deletedAccount(Integer id){
-        Accounts accounts = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("Account not found"));
-        accounts.setDeletedAt(LocalDateTime.now());
-        accountRepository.save(accounts);
-    }
-
-    public void saveAccountAndUser(AccountUserDto accountUserDto) {
-        // map accountUserDto -> Account and User
-        // User user = userRepository.save(user) -> get user id
-        // Set user id into account
-        // accountRepo.save(account)
-        UserService userService = new UserService(userRepository);
-        AccountUserDto accountUser = userService.saveUser(accountUserDto);
-        int userId = accountUser.getId();
-        accountUser.setRoleId(userId);
-        saveAccount(accountUser);
+    public void deletedAccount(Long id){
+        AccountEntity accountEntity = accountRepository.findById(id).orElseThrow(() -> new RuntimeException("account not found"));
+        accountEntity.setDeletedAt(LocalDateTime.now());
+        accountRepository.save(accountEntity);
     }
 }

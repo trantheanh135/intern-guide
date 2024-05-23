@@ -8,11 +8,12 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-public class CourseDto {
+public class CourseCreateReq {
     private Long id;
     private String name;
     private String slug;
+    private Long departmentId;
     private DepartmentEntity department;
     private Byte status;
+    private LocalDateTime createdAt;
 }
-

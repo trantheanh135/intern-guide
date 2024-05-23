@@ -6,37 +6,41 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name="TERMS")
+@Table(name="terms")
 
-public class Terms {
+public class TermEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID",nullable = false)
+    @Column(name = "id",nullable = false)
     private Integer id;
 
-    @Column(name = "NAME",nullable = false)
+    @Column(name = "name",nullable = false)
     private String name;
 
-    @Column(name = "SLUG",nullable = false)
+    @Column(name = "slug",nullable = false)
     private String slug;
 
-    @Column(name = "YEAR",nullable = false)
+    @Column(name = "year",nullable = false)
     private Integer year;
 
-    @Column(name = "STATUS",nullable = false)
+    @Column(name = "status",nullable = false)
     private Byte status;
 
-    @Column(name = "CREATED_AT", nullable = false)
+    @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "UPDATED_AT", nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private LocalDateTime updatedAt;
 
-    @Column(name = "DELETED_AT", nullable = false)
+    @Column(name = "deleted_at", nullable = false)
     private LocalDateTime deletedAt;
+
+    @OneToMany(mappedBy = "term")
+    private List<GroupEntity> group;
 }

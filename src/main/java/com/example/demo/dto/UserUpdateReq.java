@@ -1,33 +1,28 @@
 package com.example.demo.dto;
 
+import com.example.demo.repository.entity.Gender;
+import com.example.demo.repository.entity.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 @Getter
 @Setter
-public class AccountUserDto {
-    private String userName;
-    private Integer roleId;
-    private Integer UserId;
-    private String Password;
-    private String ipClient;
-    private LocalDateTime lastLogin;
-    private LocalDateTime lastLogout;
-
+public class UserUpdateReq {
+    private Long id;
     private String extraCode;
     private String firstName;
     private String lastName;
     private String fullName;
     private String email;
+    private UserStatus status;
     private String phone;
     private String address;
     private LocalDate birthday;
-    private byte gender;
+    private Gender gender;
     private String avatar;
     private String information;
-
-    private byte status;
-    private int id;
+    private LocalDateTime updateAt;
 }
