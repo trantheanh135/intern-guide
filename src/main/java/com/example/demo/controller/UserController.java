@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.UserCreationReq;
-import com.example.demo.dto.UserUpdateReq;
+import com.example.demo.dto.UserDTO.UserCreationReq;
+import com.example.demo.dto.UserDTO.UserUpdateReq;
 import com.example.demo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

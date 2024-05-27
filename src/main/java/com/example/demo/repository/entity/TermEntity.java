@@ -1,15 +1,15 @@
 package com.example.demo.repository.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="terms")
@@ -17,28 +17,28 @@ import java.util.List;
 public class TermEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false)
-    private Integer id;
+    @Column(name = "id")
+    private Long id;
 
-    @Column(name = "name",nullable = false)
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "slug",nullable = false)
+    @Column(name = "slug")
     private String slug;
 
-    @Column(name = "year",nullable = false)
+    @Column(name = "year")
     private Integer year;
 
-    @Column(name = "status",nullable = false)
-    private Byte status;
+    @Column(name = "status")
+    private UserStatus status;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at", nullable = true)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", nullable = false)
+    @Column(name = "updated_at", nullable = true)
     private LocalDateTime updatedAt;
 
-    @Column(name = "deleted_at", nullable = false)
+    @Column(name = "deleted_at", nullable = true)
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "term")

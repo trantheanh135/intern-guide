@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.AccountCreateReq;
-import com.example.demo.dto.AccountUpdateReq;
+import com.example.demo.dto.AccountDTO.AccountCreateReq;
+import com.example.demo.dto.AccountDTO.AccountUpdateReq;
 import com.example.demo.repository.AccountRepository;
 import com.example.demo.repository.RoleRepository;
 import com.example.demo.repository.UserRepository;

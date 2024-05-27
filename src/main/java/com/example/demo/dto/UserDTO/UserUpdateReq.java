@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.UserDTO;
 
 import com.example.demo.repository.entity.Gender;
 import com.example.demo.repository.entity.UserStatus;

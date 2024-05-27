@@ -1,9 +1,8 @@
-package com.example.demo.dto;
+package com.example.demo.dto.AccountDTO;
 
 import com.example.demo.repository.entity.AccountStatus;
 import com.example.demo.repository.entity.RoleEntity;
 import com.example.demo.repository.entity.UserEntity;
-import com.example.demo.repository.entity.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.AccountCreateReq;
-import com.example.demo.dto.AccountUpdateReq;
+import com.example.demo.dto.AccountDTO.AccountCreateReq;
+import com.example.demo.dto.AccountDTO.AccountUpdateReq;
 import com.example.demo.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

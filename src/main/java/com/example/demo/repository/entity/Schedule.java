@@ -1,9 +1,7 @@
 package com.example.demo.repository.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -11,6 +9,8 @@ import java.util.List;
 
 @Entity
 @Builder
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="schedule")
@@ -18,43 +18,43 @@ import java.util.List;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id",nullable=false)
-    private int id;
+    @Column(name="id")
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name="course_id",nullable=false)
+    @JoinColumn(name="course_id")
     private CourseEntity course;
 
     @ManyToOne
-    @JoinColumn(name="group_id",nullable=false)
+    @JoinColumn(name="group_id")
     private GroupEntity group;
 
-    @Column(name="description",nullable=false)
+    @Column(name="description")
     private String description;
 
-    @Column(name="location",nullable=false)
+    @Column(name="location")
     private String location;
 
     @ManyToOne
-    @JoinColumn(name="teacher_id",nullable=false)
+    @JoinColumn(name="teacher_id")
     private AccountEntity teahcerSchedule;
 
-    @Column(name="start_date",nullable=false)
+    @Column(name="start_date")
     private LocalDate startDate;
 
-    @Column(name="end_date",nullable=false)
+    @Column(name="end_date")
     private LocalDate endDate;
 
-    @Column(name="repeats",nullable=false)
+    @Column(name="repeats")
     private Integer  repeats;
 
-    @Column(name="created_at",nullable=false)
+    @Column(name="created_at")
     private LocalDateTime createdAt;
 
-    @Column(name="updated_at",nullable=false)
+    @Column(name="updated_at")
     private LocalDateTime updatedAt;
 
-    @Column(name="deleted_at",nullable=false)
+    @Column(name="deleted_at")
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "schedule")

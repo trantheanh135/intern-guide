@@ -16,19 +16,19 @@ import java.time.LocalTime;
 public class ScheduleUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id",nullable = false)
+    @Column(name = "id")
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "schedule_id",nullable = false)
+    @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    @Column(name = "date",nullable = false)
+    @Column(name = "date")
     private LocalDate date;
 
-    @Column(name = "start_time",nullable = false)
+    @Column(name = "start_time")
     private LocalTime startTime;
 
-    @Column(name = "end_time",nullable = false)
+    @Column(name = "end_time")
     private LocalTime endTime;
 }

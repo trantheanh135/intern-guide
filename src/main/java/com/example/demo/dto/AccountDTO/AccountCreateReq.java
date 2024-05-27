@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.AccountDTO;
 
 import com.example.demo.repository.entity.AccountStatus;
 import com.example.demo.repository.entity.RoleEntity;
