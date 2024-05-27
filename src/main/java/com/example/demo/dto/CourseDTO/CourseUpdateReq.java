@@ -1,4 +1,4 @@
-package com.example.demo.dto;
+package com.example.demo.dto.CourseDTO;
 
 import com.example.demo.repository.entity.DepartmentEntity;
 import lombok.Getter;

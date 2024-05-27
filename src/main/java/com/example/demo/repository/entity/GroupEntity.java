@@ -43,7 +43,7 @@ public class GroupEntity {
     private String slug;
 
     @Column(name = "student_numbers" )
-    private int TeacherNumber;
+    private int studentNumber;
 
     @ManyToOne
     @JoinColumn(name = "teacher_id" )

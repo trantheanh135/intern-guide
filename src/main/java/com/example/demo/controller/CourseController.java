@@ -1,8 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.CourseCreateReq;
-import com.example.demo.dto.CourseDto;
-import com.example.demo.dto.CourseUpdateReq;
+import com.example.demo.dto.CourseDTO.CourseCreateReq;
+import com.example.demo.dto.CourseDTO.CourseUpdateReq;
+import com.example.demo.repository.entity.CourseEntity;
 import com.example.demo.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +34,12 @@ public class CourseController {
     }
 
     @GetMapping("/{id}")
-    public CourseDto getCourse(@PathVariable("id") Long id) {
-        return courseService.getCouse(id);
+    public CourseEntity getCourse(@PathVariable("id") Long id) {
+        return courseService.getCourseById(id);
     }
 
     @GetMapping()
-    public List<CourseDto> getCourses() {
+    public List<CourseEntity> getCourses() {
         return courseService.getAllCourses();
     }
 }

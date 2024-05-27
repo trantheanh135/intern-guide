@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
-import com.example.demo.dto.UserCreationReq;
-import com.example.demo.dto.UserUpdateReq;
+import com.example.demo.dto.UserDTO.UserCreationReq;
+import com.example.demo.dto.UserDTO.UserUpdateReq;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.repository.entity.UserEntity;
 import lombok.RequiredArgsConstructor;
@@ -56,37 +56,10 @@ public class UserService {
     }
 
     public UserEntity getUserById(Long id) {
-        UserEntity user = userRepository.getByUserId(id).orElseThrow(() -> new RuntimeException("user not found"));
-        return user;
+        return userRepository.getByUserId(id).orElseThrow(() -> new RuntimeException("user not found"));
     }
 
     public List<UserEntity> getUserAll() {
-        List<UserEntity> user = userRepository.findAll();
-        user.isEmpty();
-        return user;
+        return userRepository.findAll();
     }
-//
-//    public UserEntity updateUser(UserEntity request) {
-//        UserEntity user = userRepository.findById(request.getId()).orElseThrow(() -> new RuntimeException("user not found"));
-//        user.setFirstName(request.getFirstName());
-//        user.setExtraCode(request.getExtraCode());
-//        user.setFullName(request.getFullName());
-//        user.setLastName(request.getLastName());
-//        user.setEmail(request.getEmail());
-//        user.setStatus(request.getStatus());
-//        user.setPhone(request.getPhone());
-//        user.setAddress(request.getAddress());
-//        user.setBirthday(request.getBirthday());
-//        user.setGender(request.getGender());
-//        user.setAvatar(request.getAddress());
-//        user.setInformation(request.getInformation());
-//        user.setUpdatedAt(LocalDateTime.now());
-//        return userRepository.save(user);
-//    }
-//
-//    public void deleteUser(LocalDateTime deletedAt, Integer id) {
-//        UserEntity user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("user not found"));
-//        user.setDeletedAt(deletedAt);
-//        userRepository.save(user);
-//    }
 }
