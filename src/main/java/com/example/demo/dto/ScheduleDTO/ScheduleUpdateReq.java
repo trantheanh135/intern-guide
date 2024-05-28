@@ -7,7 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalTime;
 
 @Getter
 @Setter
@@ -23,4 +23,6 @@ public class ScheduleUpdateReq {
     private Long groupId;
     private AccountEntity teacher;
     private Long teacherId;
+    private LocalTime StartTime;
+    private LocalTime EndTime;
 }

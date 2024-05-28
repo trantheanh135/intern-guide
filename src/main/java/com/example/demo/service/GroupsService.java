@@ -29,7 +29,7 @@ public class GroupsService {
         DepartmentEntity departmentEntity = departmentRepository.findById(request.getDepartmentId()).orElseThrow(() -> new RuntimeException("group not found"));
         AccountEntity captain = accountRepository.findById(request.getCaptainId()).orElseThrow(() -> new RuntimeException("captain not found"));
         AccountEntity teacher = accountRepository.findById(request.getTeacherId()).orElseThrow(() -> new RuntimeException("teacher not found"));
-        TermEntity term = termRepository.findById(request.getTermId()).orElseThrow(() -> new RuntimeException("teacher not found"));
+        TermEntity term = termRepository.findById(request.getTermId()).orElseThrow(() -> new RuntimeException("term not found"));
 
         groupEntity.setName(request.getName());
         groupEntity.setDepartment(departmentEntity);
