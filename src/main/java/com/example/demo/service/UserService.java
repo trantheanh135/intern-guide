@@ -14,7 +14,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    // Save user  -> user Entity
 
     public void saveUser(UserCreationReq request) {
         UserEntity user = new UserEntity();

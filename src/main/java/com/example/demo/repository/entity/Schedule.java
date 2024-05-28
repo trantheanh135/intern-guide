@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 @Entity
@@ -45,16 +46,22 @@ public class Schedule {
     @Column(name="end_date")
     private LocalDate endDate;
 
+    @Column(name = "start_time")
+    private LocalTime startTime;
+
+    @Column(name = "end_time")
+    private LocalTime endTime;
+
     @Column(name="repeats")
     private Integer  repeats;
 
-    @Column(name="created_at")
+    @Column(name="created_at", nullable = true)
     private LocalDateTime createdAt;
 
-    @Column(name="updated_at")
+    @Column(name="updated_at", nullable = true)
     private LocalDateTime updatedAt;
 
-    @Column(name="deleted_at")
+    @Column(name="deleted_at", nullable = true)
     private LocalDateTime deletedAt;
 
     @OneToMany(mappedBy = "schedule")

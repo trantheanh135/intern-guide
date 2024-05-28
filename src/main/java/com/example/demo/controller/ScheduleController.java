@@ -5,19 +5,18 @@ import com.example.demo.dto.ScheduleDTO.ScheduleUpdateReq;
 import com.example.demo.repository.entity.Schedule;
 import com.example.demo.service.ScheduleService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/Schedule")
+@RequestMapping("/schedule")
 public class ScheduleController {
     private final ScheduleService scheduleService;
 
     @PostMapping()
-    public String create(ScheduleCreateReq scheduleCreateReq){
+    public String create(@RequestBody ScheduleCreateReq scheduleCreateReq){
         scheduleService.createSchedule(scheduleCreateReq);
         return "Success";
     }
