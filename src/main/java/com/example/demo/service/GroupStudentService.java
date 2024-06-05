@@ -12,6 +12,7 @@ import com.example.demo.repository.entity.CourseEntity;
 import com.example.demo.repository.entity.GroupEntity;
 import com.example.demo.repository.entity.GroupStudentEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class GroupStudentService {
     private final CourseRepository courseRepository;
     private final AccountRepository accountRepository;
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void saveGroupStudent(GroupStudentCreateReq request) {
         GroupStudentEntity groupStudentEntity = new GroupStudentEntity();
         GroupEntity groupEntity = groupsRepository.findById(request.getGroupId()).orElseThrow(() -> new RuntimeException("group not found"));
@@ -41,6 +43,7 @@ public class GroupStudentService {
         groupStudentRepository.save(groupStudentEntity);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void updateGroupStudent(GroupStudentUpdateReq request, Long id) {
         GroupStudentEntity groupStudentEntity = groupStudentRepository.findById(id).orElseThrow(() -> new RuntimeException("groupStudent not found"));
         CourseEntity courseEntity = courseRepository.findById(request.getCourseId()).orElseThrow(() -> new RuntimeException("course not found"));
@@ -57,6 +60,7 @@ public class GroupStudentService {
         groupStudentRepository.save(groupStudentEntity);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void deleteGroupStudent(Long id) {
         GroupStudentEntity groupStudentEntity = groupStudentRepository.findById(id).orElseThrow(() -> new RuntimeException("groupStudent not found"));
 
@@ -64,10 +68,12 @@ public class GroupStudentService {
         groupStudentRepository.save(groupStudentEntity);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin','SCOPE_Teacher','SCOPE_Student')")
     public GroupStudentEntity getGroupStudentById(Long id) {
         return groupStudentRepository.findById(id).orElseThrow(() -> new RuntimeException("groupStudent not found"));
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin','SCOPE_Teacher','SCOPE_Studnet')")
     public List<GroupStudentEntity> getGroupStudentAll() {
         return groupStudentRepository.findAll();
     }

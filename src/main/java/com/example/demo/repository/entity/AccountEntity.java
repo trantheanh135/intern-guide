@@ -1,6 +1,7 @@
 package com.example.demo.repository.entity;
 
 //import com.prasac.mbs.common.entity.Audit;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 //import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -34,6 +35,7 @@ public class AccountEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonBackReference
     private UserEntity user;
 
     @Column(name = "username")
@@ -54,18 +56,18 @@ public class AccountEntity {
     @Column(name  = "deleted_at")
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "leader")
+    @OneToMany(mappedBy = "leader", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<DepartmentEntity> leaderDepartment;
 
-    @OneToMany(mappedBy = "teacher")
+    @OneToMany(mappedBy = "teacher", fetch = FetchType.LAZY)
     private List<GroupEntity> teacherGroup;
 
-    @OneToMany(mappedBy = "captain")
+    @OneToMany(mappedBy = "captain", fetch = FetchType.LAZY)
     private List<GroupEntity> captainGroup;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY)
     private List<GroupStudentEntity> studentGroupStudent;
 
-    @OneToMany(mappedBy = "teahcerSchedule")
+    @OneToMany(mappedBy = "teahcerSchedule", fetch = FetchType.LAZY)
     private List<Schedule> teahcerSchedule;
 }

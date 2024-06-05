@@ -11,6 +11,7 @@ import com.example.demo.repository.entity.DepartmentEntity;
 import com.example.demo.repository.entity.GroupEntity;
 import com.example.demo.repository.entity.TermEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -24,6 +25,7 @@ public class GroupsService {
     private final AccountRepository accountRepository;
     private final TermRepository termRepository;
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void saveGroup(GroupCreationReq request) {
         GroupEntity groupEntity = new GroupEntity();
         DepartmentEntity departmentEntity = departmentRepository.findById(request.getDepartmentId()).orElseThrow(() -> new RuntimeException("group not found"));
@@ -44,6 +46,7 @@ public class GroupsService {
         groupsRepository.save(groupEntity);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void updateGroup(GroupUpdateReq request, Long id) {
         GroupEntity groupEntity = groupsRepository.findById(id).orElseThrow(() -> new RuntimeException("group not found"));
         AccountEntity captain = accountRepository.findById(request.getCaptainId()).orElseThrow(() -> new RuntimeException("captain not found"));
@@ -64,15 +67,19 @@ public class GroupsService {
         groupsRepository.save(groupEntity);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin')")
     public void deleteGroup(Long id) {
         GroupEntity group = groupsRepository.findById(id).orElseThrow(() -> new RuntimeException("group not found"));
         group.setDeletedAt(LocalDateTime.now());
         groupsRepository.save(group);
     }
 
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin','SCOPE_Teacher','SCOPE_Student')")
     public GroupEntity getGroupById(Long id) {
          return groupsRepository.findById(id).orElseThrow(() -> new RuntimeException("group not found"));
     }
+
+    @PreAuthorize("hasAnyAuthority('SCOPE_Admin','SCOPE_Teacher','SCOPE_Student')")
     public List<GroupEntity> getGroupAll() {
         return groupsRepository.findAll();
     }

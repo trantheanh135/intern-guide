@@ -50,9 +50,9 @@ public class CourseEntity {
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<GroupStudentEntity> groupStudentEntities;
 
-    @OneToMany(mappedBy = "course")
+    @OneToMany(mappedBy = "course", fetch = FetchType.EAGER)
     private List<Schedule> courseSchedules;
 }

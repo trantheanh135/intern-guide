@@ -57,6 +57,6 @@ public class DepartmentEntity {
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "department", fetch = FetchType.LAZY)
     private List<CourseEntity> course;
 }
