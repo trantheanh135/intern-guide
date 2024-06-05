@@ -65,9 +65,9 @@ public class GroupEntity {
     @Column(name = "deleted_at" , nullable = true)
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private List<GroupStudentEntity> groupStudentList;
 
-    @OneToMany(mappedBy = "group")
+    @OneToMany(mappedBy = "group", fetch = FetchType.LAZY)
     private List<Schedule> groupScheduleList;
 }

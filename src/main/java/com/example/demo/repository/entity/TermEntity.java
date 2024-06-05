@@ -2,6 +2,7 @@ package com.example.demo.repository.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Where;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="terms")
-
+@Where(clause = "deleted_at is null")
 public class TermEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +42,6 @@ public class TermEntity {
     @Column(name = "deleted_at", nullable = true)
     private LocalDateTime deletedAt;
 
-    @OneToMany(mappedBy = "term")
+    @OneToMany(mappedBy = "term", fetch = FetchType.LAZY)
     private List<GroupEntity> group;
 }
